@@ -25,4 +25,8 @@ You can then later update Guzzle using composer:
 
 composer.phar update
 
-
+# Example Usage
+```php
+$test = new Goldmine("https","goldmine.provide.services",$api_key);
+$res = $test->fetch_contracts();
+```
