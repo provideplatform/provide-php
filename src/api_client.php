@@ -11,6 +11,7 @@ class APIClient {
 
         $headers = [
             'authorization' => 'bearer '.$this->token,
+            'Content-Type' => 'application/x-www-form-urlencoded'
         ];
 
         $this->client = new GuzzleHttp\Client(['headers'=>$headers]);
@@ -24,7 +25,9 @@ class APIClient {
     }
 
     function post($uri, $params) {
-        $res = $this->client->request('POST', $this->base_url.$uri,$params);
+	    $res = $this->client->post($this->base_url.$uri, [
+			GuzzleHttp\RequestOptions::JSON => $params
+		]);
         $response = json_decode($res->getBody());
         
         return $response;
