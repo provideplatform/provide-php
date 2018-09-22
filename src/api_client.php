@@ -24,7 +24,10 @@ class APIClient {
     }
 
     function post($uri, $params) {
-
+        $res = $this->client->request('POST', $this->base_url.$uri,$params);
+        $response = json_decode($res->getBody());
+        
+        return $response;
     }
 
     function put($uri, $params) {
